@@ -25,7 +25,7 @@ router.post('/upload-wallpaper', async (req, res) => {
     //Return if not file
     if (uploadedFile) {
         //Upload to storage storage is already authenticated
-        await storage.bucket('wallpaper-en').file(filename).save(uploadedFile.data)
+        await storage.bucket(process.env.bucketName).file(filename).save(uploadedFile.data)
         //Return url with public url to access file in google storage
         return res.status(200).send({wallpaper:'https://storage.googleapis.com/wallpaper-en/' + filename})
     }
